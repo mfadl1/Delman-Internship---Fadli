@@ -9,7 +9,7 @@ export default function Navbar(){
                 <Text fontSize="2xl">delman.io</Text>
                 <Breadcrumb>
                     <BreadcrumbItem>
-                        <BreadcrumbLink href='#'>Internship Program</BreadcrumbLink>
+                        <BreadcrumbLink href='/'>Internship Program</BreadcrumbLink>
                     </BreadcrumbItem>
 
                     <BreadcrumbItem>

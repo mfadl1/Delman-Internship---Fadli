@@ -14,7 +14,6 @@ a {
 * {
   box-sizing: border-box;
   border-style: solid;
-  overflow: hidden;
 }
 
 @media (prefers-color-scheme: dark) {

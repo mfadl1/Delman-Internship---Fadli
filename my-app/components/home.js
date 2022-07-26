@@ -1,5 +1,6 @@
 import { Box, Flex, Heading, Stack, Text,StackDivider,Link, Button, textDecoration } from "@chakra-ui/react"
 import { ArrowForwardIcon } from '@chakra-ui/icons'
+import NextLink from "next/link"
 
 export default function Home(){
     return (
@@ -9,9 +10,10 @@ export default function Home(){
                     <Stack direction="row" spacing={8}>
                         <Box p='5' boxShadow="md" borderWidth={1} maxWidth={270}>
                             <Button rightIcon={<ArrowForwardIcon />} padding={0} height="fit-content" bg="white" _hover={{ bg:"white" }}>
-                                <Link>
-                                    <Heading size='md'>Title Transformer</Heading>
-                                </Link>
+                                
+                                    <Link href='/change-title' passHref>
+                                        <Heading size='md'>Title Transformer</Heading>
+                                    </Link>
                             </Button>
                             <Text marginTop={4}>
                                 A simple title transformation panel
