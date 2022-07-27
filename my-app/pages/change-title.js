@@ -3,7 +3,7 @@ import Navbar from "../components/navbar";
 import randomColor from "randomcolor";
 import React, { useState, useEffect } from 'react';
 
-export default function TitleTransformer(){
+export default function titleTransformer(){
 
     const [count, setCount] = useState(0);
     const [headingArray, setHeadingArray] = useState([]);

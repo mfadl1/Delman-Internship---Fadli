@@ -26,7 +26,7 @@ export default function Navbar(){
                                 <BreadcrumbLink href='/change-title'>Title Transformer</BreadcrumbLink>
                             </BreadcrumbItem>
                         </Breadcrumb>
-                    :
+                    : router.pathname == '/fetching' ?
                         <Breadcrumb>
                         <BreadcrumbItem>
                             <BreadcrumbLink href='/'>Internship Program</BreadcrumbLink>
@@ -35,6 +35,7 @@ export default function Navbar(){
                             <BreadcrumbLink href='/fetching'>User Fetcher</BreadcrumbLink>
                         </BreadcrumbItem>
                         </Breadcrumb>
+                    : null
                 }
             </Stack>
         </Flex>
