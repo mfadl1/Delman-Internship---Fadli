@@ -9,9 +9,9 @@ export default function TitleTransformer(){
     const [headingArray, setHeadingArray] = useState([]);
 
     const addHeading = () =>{
-        setCount(prevCount => prevCount+1, s => console.log(s))
-        //let coutelmt = count + 1
-        const title = 'Internship Program - ' + count
+        setCount(prevCount => prevCount + 1)
+        let coutelmt = count + 1
+        const title = 'Internship Program - ' + coutelmt
         let color = randomColor();
         headingArray.push({title,color})
         

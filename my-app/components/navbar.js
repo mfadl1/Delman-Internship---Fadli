@@ -8,16 +8,16 @@ export default function Navbar(){
             <Stack direction="row" divider={<StackDivider borderColor='gray.200' />} spacing={5} align="center">
                 <Text fontSize="2xl">delman.io</Text>
                 <Breadcrumb>
-                    <BreadcrumbItem>
+                    <BreadcrumbItem isCurrentPage>
                         <BreadcrumbLink href='/'>Internship Program</BreadcrumbLink>
                     </BreadcrumbItem>
 
                     <BreadcrumbItem>
-                        <BreadcrumbLink href='#'>Docs</BreadcrumbLink>
+                        <BreadcrumbLink href='/change-title'>Title Tranformer</BreadcrumbLink>
                     </BreadcrumbItem>
 
-                    <BreadcrumbItem isCurrentPage>
-                        <BreadcrumbLink href='#'>Breadcrumb</BreadcrumbLink>
+                    <BreadcrumbItem >
+                        <BreadcrumbLink href='/fetching'>User Fetcher</BreadcrumbLink>
                     </BreadcrumbItem>
                 </Breadcrumb>
             </Stack>

@@ -6,16 +6,22 @@ import { useState } from "react";
 export default function userFetcher(){
 
     const [userData, setUserData] = useState([])
+    const [gender, setGender] = useState("")
     const [buttonText, setButtonText] = useState("Fetch User")
-    const [fecthed, setFecthed] = useState(false)
+    const [fetched, setfetched] = useState(false)
+    const [loading, setLoading] = useState(false)
 
     const fetchRandomData = async () => {
-        setFecthed(true)
+        setfetched(true)
+        setLoading(true)
         setButtonText("Refetch User")
         await axios.get("https://randomuser.me/api")
         .then(result => {
             console.log(result.data.results)
+            console.log(loading)
             setUserData(result.data.results)
+            setGender(result.data.results[0].gender)
+            setLoading(false)
         })
         .catch(error => {
             console.log(error)
@@ -26,21 +32,19 @@ export default function userFetcher(){
         <>
         <Navbar />
         <Flex align="center" justify="center" minHeight="100vh" width="100%">
-            
             <Flex direction="column" >
-                
                 <Heading textAlign="center" mb={8}>User Fetcher</Heading>
                 <Divider />
-                <Box my={14} borderRadius="md" boxShadow="2xl" maxW={270}>
+                <Box my={14} borderRadius="md" boxShadow="2xl" maxW={270} height={300} borderColor={gender == "male" ? "blue.600" : "pink.400"} borderWidth={fetched ? 1 : 0}>
                     <Flex direction="column" p={8} align="center" justify="center">
-                        {!fecthed 
+                        {!fetched 
                             ? <Avatar src="https://bit.ly/broken-link" size="xl" /> 
                             : userData.map((item, index) => {
                                 return (
                                     <Avatar key={index} src={item.picture.large} size="xl" />
                                 )
                             })}
-                        <SkeletonText isLoaded={fecthed} noOfLines={8} spacing={2} mt={5} height={120} width={206}>
+                        <SkeletonText isLoaded={fetched} noOfLines={8} spacing={2} mt={5} height={120} width={206}>
                             <Flex direction="column" align="center" justify="center">
                                 {userData.map((item, index) => {
                                     return (
@@ -63,7 +67,7 @@ export default function userFetcher(){
                     </Flex>
                 </Box>
                 <Divider />
-                <Button mt={8} onClick={fetchRandomData}>
+                <Button isLoading={loading} mt={8} onClick={fetchRandomData}>
                     {buttonText}
                 </Button>
             </Flex>
