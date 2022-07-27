@@ -1,4 +1,4 @@
-import { Box, Text, Divider, Heading, Stack, StackDivider, Flex, Button } from "@chakra-ui/react";
+import { Text, Divider, Heading, Stack, StackDivider, Flex, Button } from "@chakra-ui/react";
 import Navbar from "../components/navbar";
 import randomColor from "randomcolor";
 import React, { useState, useEffect } from 'react';
@@ -9,13 +9,13 @@ export default function TitleTransformer(){
     const [headingArray, setHeadingArray] = useState([]);
 
     const addHeading = () =>{
-        setCount(prevCount => prevCount + 1)
-        let coutelmt = count + 1
-        const title = 'Internship Program - ' + coutelmt
+        setCount(prevCount => prevCount+1, s => console.log(s))
+        //let coutelmt = count + 1
+        const title = 'Internship Program - ' + count
         let color = randomColor();
         headingArray.push({title,color})
         
-        console.log(count)
+        // console.log(count)
         console.log(headingArray)
     }
 
@@ -31,11 +31,8 @@ export default function TitleTransformer(){
     return(
         <>
         <Navbar />
-        <Box display="flex" alignItems="center" justifyContent="center" width="100%" minH="100vh">
+        <Flex alignItems="center" justifyContent="center" width="100%" minH="100vh">
             <Flex direction="column" align="center" justify="center">
-                {/* <Heading mb={8}>
-                    Internship Program - 1
-                </Heading> */}
                 {headingArray.map((item, index) => {
                     return (
                         <Heading key={index} mb={8} color={ item.color }>{item.title}</Heading>
@@ -64,7 +61,7 @@ export default function TitleTransformer(){
                     </Stack>
                 </Stack>
             </Flex>
-        </Box>
+        </Flex>
         </>
     )
 }
