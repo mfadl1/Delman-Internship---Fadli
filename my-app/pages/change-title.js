@@ -6,6 +6,9 @@ import React, { useState, useEffect } from 'react';
 export default function titleTransformer(){
 
     const [count, setCount] = useState(0);
+    const [timer, setTimer] = useState(0)
+    const [startRandom, setStartRandom] = useState(false)
+    const [buttonText, setButtonText] = useState("Randomize Color")
     const [headingArray, setHeadingArray] = useState([]);
 
     const addHeading = () =>{
@@ -15,7 +18,6 @@ export default function titleTransformer(){
         let color = randomColor();
         headingArray.push({title,color})
         
-        // console.log(count)
         console.log(headingArray)
     }
 
@@ -24,9 +26,50 @@ export default function titleTransformer(){
         setHeadingArray(headingArray.slice(0, -1))
     }
 
+    const setHeadingColor = (state) => {
+        if (state){
+            headingArray.map((item, index) => {
+                let color = randomColor();
+                item.color = color
+            })
+        }
+        else{
+            headingArray.map((item, index) => {
+                item.color = "black"
+            })
+        }
+    }
+    
+    const randomizeTitleColor = () => {
+        if(!startRandom){
+            setStartRandom(true)
+            setButtonText("Clear Color")
+        }
+        else{
+            setStartRandom(false)
+            setButtonText("Randomize Color")
+            setHeadingColor(false)
+        }
+    }
+
     useEffect(() => {
-        addHeading();
-    },[])
+        let interval;
+
+        if(count == 0){
+            addHeading();
+        }
+        if (startRandom){
+            interval = setInterval(() => {
+                setHeadingColor(true)
+                setTimer((seconds) => seconds + 1);
+                }, 1000);
+        }
+        else if (!startRandom){
+            clearInterval(interval)
+            setTimer(0)
+        }
+        return () => clearInterval(interval)
+    },[startRandom])
 
     return(
         <>
@@ -42,15 +85,15 @@ export default function titleTransformer(){
                 <Stack direction="column" divider={<StackDivider borderColor='gray.200' />} spacing={3}>
                     <Stack direction="row" divider={<StackDivider borderColor='gray.200' />} justify="center"> 
                         <Text>
-                            Running for: 0s
+                            Running for: {timer}s
                         </Text>
                         <Text>
                             Title count: {count}
                         </Text>
                     </Stack>
                     <Stack direction="row" spacing={8}>
-                        <Button>
-                            Randomize Color
+                        <Button onClick={randomizeTitleColor}>
+                            {buttonText}
                         </Button>
                         <Button onClick={addHeading} disabled={count == 5}>
                             Add Title

@@ -1,5 +1,5 @@
 import { Heading, Flex, Text, Stack, StackDivider, Button, Link } from "@chakra-ui/react"
-import { ArrowBackIcon, ArrowForwardIcon } from '@chakra-ui/icons'
+import { ArrowBackIcon } from '@chakra-ui/icons'
 import Navbar from "../components/navbar"
 
 export default function notFound(){
